@@ -9,7 +9,9 @@ import { UserFormModel } from '../models/form-user.model';
 })
 export class NotificationService {
 
-  url = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
+
+  url? = process.env.USERS_URL;
   destinatario = "lperdomoduran@outlook.com";
   asunto = "Comentario de cliente";
   constructor(private http:HttpClient) { }

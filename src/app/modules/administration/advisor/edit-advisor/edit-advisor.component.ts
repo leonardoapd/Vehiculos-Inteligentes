@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GeneralData } from 'src/app/config/general-data';
+// import { GeneralData } from 'src/app/config/general-data';
 import { AdvisorCredentialsRegisterModel } from 'src/app/models/user-credentials';
 import { AdvisorService } from 'src/app/services/advisor.service';
 import { PersonService } from 'src/app/services/person.service';
@@ -13,13 +13,15 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class EditAdvisorComponent implements OnInit {
 
+  dotenv = require('dotenv').config();
+
   //Se declaran las propiedades a utilizar por el componente
   form: FormGroup = new FormGroup({}); //Se instancia el formulario a utilizar
-  siteKey: string = GeneralData.CODE_CAPTCHA; //Se declara la llave a utilizar por el recaptcha
+  siteKey?: string = process.env.CODE_CAPTCHA; //Se declara la llave a utilizar por el recaptcha
   id: string = ""; //Se inicializa vacio el id del asesor que se va a actualizar
 
   /*
-  Se inyectan las dependencias del componente. 
+  Se inyectan las dependencias del componente.
   Es necesario usar el formbuilder para construir el formulario.
   Se hace uso del servicio de asesor para hacer las peticiones al backend
   Se hace uso del router para navegar entre URLs
@@ -34,7 +36,7 @@ export class EditAdvisorComponent implements OnInit {
 
   //Metodo que se ejecuta al inicializar el componente
   ngOnInit(): void {
-    //Se obtiene el id proveniente de la URL 
+    //Se obtiene el id proveniente de la URL
     this.id = this.route.snapshot.params["id"];
     //Se crea el formulario
     this.CreateForm();

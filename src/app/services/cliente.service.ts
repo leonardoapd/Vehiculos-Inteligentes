@@ -10,10 +10,12 @@ import { ClientRegisteredComponent } from '../modules/administration/client/crea
 })
 export class ClienteService {
 
-  url_dpto: string = GeneralData.API_DPTO;
-  url: string = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
 
- 
+  url_dpto?: string = process.env.API_DPTO;
+  url?: string = process.env.USERS_URL;
+
+
 
   constructor(
     private http: HttpClient

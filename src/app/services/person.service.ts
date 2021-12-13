@@ -9,7 +9,9 @@ import {AdvisorCredentialsRegisterModel} from '../models/user-credentials';
 })
 export class PersonService {
 
-  url: string = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
+
+  url?: string = process.env.USERS_URL;
   datosAsesor = new BehaviorSubject<AdvisorCredentialsRegisterModel>(new AdvisorCredentialsRegisterModel());
   constructor(private http: HttpClient) { }
 }

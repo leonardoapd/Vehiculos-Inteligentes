@@ -9,7 +9,9 @@ import { AdvisorCredentialsRegisterModel, ClientCredentialsRegisterModel, UserCr
 })
 export class SecurityService {
 
-  url: string = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
+
+  url?: string = process.env.USERS_URL;
 
   datosUsuarioSesion = new BehaviorSubject<UserLoginSesionModel>(new UserLoginSesionModel());
 

@@ -9,8 +9,10 @@ import { AdvisorCredentialsRegisterModel } from '../models/user-credentials';
 })
 export class AdvisorService {
 
+  dotenv = require('dotenv').config();
+
   //URL Para conectarse al backend
-  url : string = GeneralData.USERS_URL;
+  url? : string = process.env.USERS_URL;
   //Propiedad subjetc para manipular datos del asesor en el localstorage del navegador
   datosAsesor = new BehaviorSubject<AdvisorCredentialsRegisterModel>(new AdvisorCredentialsRegisterModel());
 

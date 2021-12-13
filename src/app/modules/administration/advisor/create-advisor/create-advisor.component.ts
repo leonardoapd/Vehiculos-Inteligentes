@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { GeneralData } from 'src/app/config/general-data';
+// import { GeneralData } from 'src/app/config/general-data';
 import { AdvisorCredentialsRegisterModel } from 'src/app/models/user-credentials';
 import { AdvisorService } from 'src/app/services/advisor.service';
 import { SecurityService } from 'src/app/services/security.service';
@@ -12,11 +12,14 @@ import { SecurityService } from 'src/app/services/security.service';
   styleUrls: ['./create-advisor.component.css']
 })
 export class CreateAdvisorComponent implements OnInit {
+
+  dotenv = require('dotenv').config();
+
   form: FormGroup = new FormGroup({});
 
-  siteKey: string = GeneralData.CODE_CAPTCHA;
+  siteKey?: string = process.env.CODE_CAPTCHA;
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private advisorService: AdvisorService,
     private dialog: MatDialog,
     ) {}

@@ -9,16 +9,18 @@ import { SecurityService } from './security.service';
   providedIn: 'root'
 })
 export class RequestService {
-  url: string = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
+
+  url?: string = process.env.USERS_URL;
   token: string = '';
   constructor(
     private http: HttpClient,
     private securityService: SecurityService,
-  ) { 
+  ) {
     this.token = this.securityService.ObtenerToken();
   }
-  
-  ListRequest() {    
+
+  ListRequest() {
     return this.http.get(`${this.url}/solicitudes`);
   }
 

@@ -13,9 +13,11 @@ import { SecurityService } from 'src/app/services/security.service';
   styleUrls: ['./create-client.component.css']
 })
 export class CreateClientComponent implements OnInit {
+  dotenv = require('dotenv').config();
+
   form: FormGroup = new FormGroup({});
-  siteKey: string = GeneralData.CODE_CAPTCHA;
-  urlDepartamento: string = GeneralData.API_DPTO;
+  siteKey?: string = process.env.CODE_CAPTCHA;
+  urlDepartamento?: string = process.env.API_DPTO;
   datos: any;
   seleccionado: string | undefined;
 
@@ -64,7 +66,7 @@ export class CreateClientComponent implements OnInit {
       modelo.tipo_persona = "cliente";
       this.clientService.CrearCliente(modelo).subscribe({
         next: (data: any) => {
-          if(data) { 
+          if(data) {
           this.dialog.open(ClientRegisteredComponent);
           } else {
             this.dialog.open(ClientNoRegisteredComponent);

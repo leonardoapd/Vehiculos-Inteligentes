@@ -47,3 +47,5 @@ Thumbs.db
 
 # Archivos propios
 general-data.ts
+
+.env

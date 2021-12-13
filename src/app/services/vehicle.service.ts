@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { GeneralData } from '../config/general-data';
+// import { GeneralData } from '../config/general-data';
 import { Vehiculo } from '../models/vehiculo.model';
 import { SecurityService } from './security.service';
 
@@ -10,7 +10,9 @@ import { SecurityService } from './security.service';
 })
 export class VehicleService {
 
-  url: string = GeneralData.USERS_URL;
+  dotenv = require('dotenv').config();
+
+  url?: string = process.env.USERS_URL;
   @Output () CardTrigger: EventEmitter<any> = new EventEmitter();
   datosVehiculo = new BehaviorSubject<Vehiculo>(new Vehiculo());
   token: string = '';
@@ -19,7 +21,7 @@ export class VehicleService {
   constructor(
     private http: HttpClient,
     private securityService: SecurityService,
-  ) { 
+  ) {
     this.token = this.securityService.ObtenerToken();
   }
 
